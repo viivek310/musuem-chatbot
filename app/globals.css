@@ -9,14 +9,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0f0f0f;
     --foreground: #ededed;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  /* color: var(--foreground);
+  background: var(--background); */
+  background: white;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -25,3 +26,22 @@ body {
     text-wrap: balance;
   }
 }
+
+/* In your global CSS file */
+.chat::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.chat::-webkit-scrollbar-thumb {
+  background-color: #4A5568; /* Color of the scrollbar */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.chat::-webkit-scrollbar-thumb:hover {
+  background-color: #2D3748; /* Color when hovered */
+}
+
+.chat::-webkit-scrollbar-track {
+  background-color: #E2E8F0; /* Track color */
+}
+
