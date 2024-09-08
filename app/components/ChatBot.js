@@ -8,6 +8,8 @@ function ChatBot() {
   const [response, setResponse] = useState("")
   const [query, setQuery] = useState("")
   const [shows, setShows] = useState([])
+  const [dates,setDates] = useState([])
+  const [selectedDate,setSelectedDate] = useState("")
   const [selectedShow, setSelectedShow] = useState("")
   // console.log(input)
 
@@ -28,11 +30,15 @@ function ChatBot() {
     console.log(data)
     setInput("")
     // console.log(data.response)
+    setDates(data.date_list)
     setQuery(data.query)
     setShows(data.shows)
     setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
+    if(dates){
+      setQuery(prev=>prev+selectedDate)
+    }
     if(shows){
-      setQuery(prev=>prev+shows)
+      setQuery(prev=>prev+selectedShow)
     }
     if(data.query){
       setSend(prev=>prev+query)
@@ -44,6 +50,11 @@ function ChatBot() {
   const showClicked = (show)=>{
     setChats(prev=>[...prev,{sent:false,message:show}])
     setSelectedShow(show)
+  }
+
+  const dateClicked = (date)=>{
+    setChats(prev=>[...prev,{sent:false,message:date}])
+    setSelectedDate(date)
   }
   return (
     <aside className='border absolute h-[65svh] w-[22vw] bottom-13 right-10 bg-slate-200 rounded-lg rounded-br overflow-hidden py-3 px-5'>
@@ -57,6 +68,10 @@ function ChatBot() {
 
         {shows&&shows?.map((show,i)=>(
           <div key={i} onClick={()=>showClicked(show)} className="rounded-md rounded-bl-none bg-slate-600 border border-white">{show}</div>
+        ))}
+
+        {dates&&dates?.map((date,i)=>(
+          <div key={i} onClick={()=>dateClicked(date)} className='rounded-md rounded-bl-none bg-slate-600 border border-white'>{date}</div>
         ))}
       </div>
       <form className="input border h-[5%] flex items-center border-black rounded-lg overflow-hidden " onSubmit={sendMessage}>
