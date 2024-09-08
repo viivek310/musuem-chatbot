@@ -16,6 +16,7 @@ function ChatBot() {
     e.preventDefault()
     setChats(prev => setChats([...prev, { sent: true, message: input }]))
     setSend(prev=>prev+input)
+    setInput("")
     
     const res = await fetch("http://localhost:5000/chat", {
       headers: {
@@ -26,6 +27,7 @@ function ChatBot() {
       body: JSON.stringify({ input: send })
     })
     const data = await res.json()
+    console.log(data.response)
     setResponse(data.response)
     setQuery(data.query)
     setShows(data.shows)
@@ -36,7 +38,6 @@ function ChatBot() {
     if(data.query){
       setSend(input+query)
     }
-    setInput("")
     
 
   }
