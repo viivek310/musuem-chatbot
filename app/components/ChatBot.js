@@ -5,7 +5,7 @@ function ChatBot() {
   const [chats, setChats] = useState([])
   const [input, setInput] = useState("")
   const [response, setResponse] = useState("")
-  console.log(input)
+  // console.log(input)
 
 
   const sendMessage = async(e)=>{
@@ -13,7 +13,14 @@ function ChatBot() {
     setChats(prev=>setChats([...prev,{sent:true,message:input}]))
     setInput("")
     
-    const res =  await fetch("http://localhost:5000/chat")
+    const res =  await fetch("http://localhost:5000/chat",{
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({message})
+  })
     data = res.json()
     // if(data.response)
     console.log(data)
