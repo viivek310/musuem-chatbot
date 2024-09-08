@@ -73,7 +73,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input: input+" "+date})
+      body: JSON.stringify({ input: query+" "+date})
     })
     const data = res.json()
     setDates("")
