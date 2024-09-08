@@ -28,10 +28,9 @@ function ChatBot() {
     })
     const data = await res.json()
     console.log(data.response)
-    setResponse(data.response)
     setQuery(data.query)
     setShows(data.shows)
-    setChats(prev => setChats([...prev, { sent: false, message: response }]))
+    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
     if(shows){
       setQuery(prev=>prev+shows)
     }
