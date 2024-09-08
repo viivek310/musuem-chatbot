@@ -4,6 +4,7 @@ import ChatMessage from './ChatMessage'
 function ChatBot() {
   const [chats, setChats] = useState([])
   const [input, setInput] = useState("")
+  const [send, setSend] = useState("")
   const [response, setResponse] = useState("")
   const [query, setQuery] = useState("")
   const [shows, setShows] = useState([])
@@ -14,15 +15,15 @@ function ChatBot() {
   const sendMessage = async (e) => {
     e.preventDefault()
     setChats(prev => setChats([...prev, { sent: true, message: input }]))
-    setInput("")
-
+    setSend(prev=>prev+input)
+    
     const res = await fetch("http://localhost:5000/chat", {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input })
+      body: JSON.stringify({ input: send })
     })
     const data = await res.json()
     setResponse(data.response)
@@ -33,9 +34,10 @@ function ChatBot() {
       setQuery(prev=>prev+shows)
     }
     if(data.query){
-      setInput(prev=>prev+query)
+      setSend(input+query)
     }
-
+    setInput("")
+    
 
   }
 
@@ -58,7 +60,7 @@ function ChatBot() {
         ))}
       </div>
       <form className="input border h-[5%] flex items-center border-black rounded-lg overflow-hidden " onSubmit={sendMessage}>
-        <input className='h-full w-[80%] border-none outline-none px-2' type="text" value={input} onChange={(e) => setInput(prev=>prev+e.target.value)} />
+        <input className='h-full w-[80%] border-none outline-none px-2' type="text" value={input} onChange={(e) => setInput(e.target.value)} />
         <div className="button flex justify-center w-[20%] items-center text-center ">
           <button className='text-white w-full bg-purple-500 border-none outline-none'  >Send</button>
         </div>
