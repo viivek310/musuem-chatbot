@@ -27,16 +27,17 @@ function ChatBot() {
       body: JSON.stringify({ input: send })
     })
     const data = await res.json()
-    console.log(data.response)
-    setQuery(data.query)
-    setShows(data.shows)
-    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
-    if(shows){
-      setQuery(prev=>prev+shows)
-    }
-    if(data.query){
-      setSend(input+query)
-    }
+    console.log(data)
+    // console.log(data.response)
+    // setQuery(data.query)
+    // setShows(data.shows)
+    // setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
+    // if(shows){
+    //   setQuery(prev=>prev+shows)
+    // }
+    // if(data.query){
+    //   setSend(input+query)
+    // }
     
 
   }
