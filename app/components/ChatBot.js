@@ -15,8 +15,6 @@ function ChatBot() {
   const sendMessage = async (e) => {
     e.preventDefault()
     setChats(prev => setChats([...prev, { sent: true, message: input }]))
-    setSend(prev=>prev+input)
-    setInput("")
     
     const res = await fetch("http://localhost:5000/chat", {
       headers: {
@@ -24,20 +22,21 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input: send })
+      body: JSON.stringify({ input: input+" "+send})
     })
     const data = await res.json()
     console.log(data)
+    setInput("")
     // console.log(data.response)
-    // setQuery(data.query)
-    // setShows(data.shows)
-    // setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
-    // if(shows){
-    //   setQuery(prev=>prev+shows)
-    // }
-    // if(data.query){
-    //   setSend(input+query)
-    // }
+    setQuery(data.query)
+    setShows(data.shows)
+    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
+    if(shows){
+      setQuery(prev=>prev+shows)
+    }
+    if(data.query){
+      setSend(prev=>prev+query)
+    }
     
 
   }
