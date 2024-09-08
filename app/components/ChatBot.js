@@ -27,7 +27,7 @@ function ChatBot() {
             {/* <ChatMessage sent={true} message={"hiii"}/>
             <ChatMessage sent={false} message={"hello"}/> */}
            {chats?.map((chat,i)=>(
-              <ChatMessage sent={chat.sent} message={chat.message}/>
+              <ChatMessage key={i} sent={chat.sent} message={chat.message}/>
            ))}
 
         </div>
