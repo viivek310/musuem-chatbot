@@ -54,7 +54,7 @@ function ChatBot() {
         ))}
 
         {shows&&shows?.map((show,i)=>(
-          <div onClick={()=>showClicked(show)} className="rounded-md rounded-bl-none bg-slate-600 border border-white">{show}</div>
+          <div key={i} onClick={()=>showClicked(show)} className="rounded-md rounded-bl-none bg-slate-600 border border-white">{show}</div>
         ))}
       </div>
       <form className="input border h-[5%] flex items-center border-black rounded-lg overflow-hidden " onSubmit={sendMessage}>
