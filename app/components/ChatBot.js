@@ -75,7 +75,8 @@ function ChatBot() {
       method: "POST",
       body: JSON.stringify({ input: query+" "+date})
     })
-    const data = res.json()
+    const data = await res.json()
+
     setDates("")
     setQuery(data.query)
     setShows(data.shows)
