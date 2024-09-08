@@ -19,7 +19,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({message})
+      body: JSON.stringify({input})
   })
     data = res.json()
     // if(data.response)
