@@ -24,7 +24,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input: input+" "+send})
+      body: JSON.stringify({ input: input})
     })
     const data = await res.json()
     console.log(data)
@@ -34,27 +34,52 @@ function ChatBot() {
     setQuery(data.query)
     setShows(data.shows)
     setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
-    if(dates){
-      setQuery(prev=>prev+selectedDate)
-    }
-    if(shows){
-      setQuery(prev=>prev+selectedShow)
-    }
-    if(data.query){
-      setSend(prev=>prev+query)
-    }
+    // if(dates){
+    //   setQuery(prev=>prev+selectedDate)
+    // }
+    // if(shows){
+    //   setQuery(prev=>prev+selectedShow)
+    // }
+    // if(data.query){
+    //   setSend(prev=>prev+query)
+    // }
     
 
   }
 
-  const showClicked = (show)=>{
+  const showClicked = async(show)=>{
     setChats(prev=>[...prev,{sent:true,message:show}])
-    setSelectedShow(show)
+    // setInput(date)
+    const res = await fetch("http://localhost:5000/chat", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({ input: input +" "+show})
+    })
+    const data = res.json()
+    setQuery(data.query)
+    setShows("")
+    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
   }
 
-  const dateClicked = (date)=>{
+  const dateClicked = async(date)=>{
     setChats(prev=>[...prev,{sent:true,message:date}])
-    setSelectedDate(date)
+    // setInput(date)
+    const res = await fetch("http://localhost:5000/chat", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({ input: input+" "+date})
+    })
+    const data = res.json()
+    setDates("")
+    setQuery(data.query)
+    setShows(data.shows)
+    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
   }
   return (
     <aside className='border absolute h-[65svh] w-[22vw] bottom-13 right-10 bg-slate-200 rounded-lg rounded-br overflow-hidden py-3 px-5'>
