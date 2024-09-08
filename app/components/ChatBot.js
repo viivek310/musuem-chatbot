@@ -21,7 +21,7 @@ function ChatBot() {
       method: "POST",
       body: JSON.stringify({input})
   })
-    data = res.json()
+    data = await res.json()
     // if(data.response)
     console.log(data)
 
