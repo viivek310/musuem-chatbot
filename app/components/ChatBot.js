@@ -48,12 +48,12 @@ function ChatBot() {
   }
 
   const showClicked = (show)=>{
-    setChats(prev=>[...prev,{sent:false,message:show}])
+    setChats(prev=>[...prev,{sent:true,message:show}])
     setSelectedShow(show)
   }
 
   const dateClicked = (date)=>{
-    setChats(prev=>[...prev,{sent:false,message:date}])
+    setChats(prev=>[...prev,{sent:true,message:date}])
     setSelectedDate(date)
   }
   return (
@@ -67,11 +67,13 @@ function ChatBot() {
         ))}
 
         {shows&&shows?.map((show,i)=>(
-          <div key={i} onClick={()=>showClicked(show)} className="rounded-md rounded-bl-none bg-slate-600 border border-white">{show}</div>
+          <div key={i} onClick={()=>showClicked(show)} className={`chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
+            float-left clear-both bg-slate-500 my-2`}>{show}</div>
         ))}
 
         {dates&&dates?.map((date,i)=>(
-          <div key={i} onClick={()=>dateClicked(date)} className='rounded-md rounded-bl-none bg-slate-600 border border-white'>{date}</div>
+          <div key={i} onClick={()=>dateClicked(date)} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
+            float-left clear-both bg-slate-500 my-2'>{date}</div>
         ))}
       </div>
       <form className="input border h-[5%] flex items-center border-black rounded-lg overflow-hidden " onSubmit={sendMessage}>
