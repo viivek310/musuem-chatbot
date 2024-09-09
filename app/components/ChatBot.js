@@ -24,63 +24,26 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input: input})
+      body: JSON.stringify({ input: query+" "+input})
     })
+    setInput("")
     const data = await res.json()
     console.log(data)
-    setInput("")
     // console.log(data.response)
     setDates(data.date_list)
     setQuery(data.query)
     setShows(data.shows)
     setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
-    // if(dates){
-    //   setQuery(prev=>prev+selectedDate)
-    // }
-    // if(shows){
-    //   setQuery(prev=>prev+selectedShow)
-    // }
-    // if(data.query){
-    //   setSend(prev=>prev+query)
-    // }
     
-
   }
 
   const showClicked = async(show)=>{
-    setChats(prev=>[...prev,{sent:true,message:show}])
-    // setInput(date)
-    const res = await fetch("http://localhost:5000/chat", {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify({ input: input +" "+show})
-    })
-    const data = res.json()
-    setQuery(data.query)
-    setShows("")
-    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
+    setInput(show)
   }
 
   const dateClicked = async(date)=>{
-    setChats(prev=>[...prev,{sent:true,message:date}])
-    // setInput(date)
-    const res = await fetch("http://localhost:5000/chat", {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify({ input: query+" "+date})
-    })
-    const data = await res.json()
-
-    setDates("")
-    setQuery(data.query)
-    setShows(data.shows)
-    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
+   
+    setInput(date)
   }
   return (
     <aside className='border absolute h-[65svh] w-[22vw] bottom-13 right-10 bg-slate-200 rounded-lg rounded-br overflow-hidden py-3 px-5'>
