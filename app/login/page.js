@@ -31,7 +31,7 @@ function Page() {
             body: JSON.stringify(signUp)
         })
         const data = await sendform.json()
-        console.log(data)
+        console.log(signUp)
         setSignUp({})
     }
     return (
@@ -67,7 +67,7 @@ function Page() {
                         <input className='w-full border border-black rounded-lg px-3' type="password" name='password' placeholder='password' value={signUp.password || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                     </div>
                     <div>
-                        <input className='w-full border border-black rounded-lg px-3' type="password" name='confirm-password' placeholder='confirm password' value={signUp.confirmpassword || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
+                        <input className='w-full border border-black rounded-lg px-3' type="password" name='confirm-password' placeholder='confirm password' value={signUp.confirm || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                     </div>
                     <div className='button'>
                         <button type='submit' className='border border-gray-800 w-full my-3 rounded-full bg-purple-500 text-white'>Register</button>
