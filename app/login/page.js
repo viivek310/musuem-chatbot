@@ -8,7 +8,7 @@ function Page() {
     <div className='flex justify-center items-center'>
         <div className="login">
             <div>
-                <input type="text" name='username' value={username} onChange={(e)=>setFormdata(prev=>({...prev,[e.target.name]:e.target.value}))}/>
+                {/* <input type="text" name='username' value={username} onChange={(e)=>setFormdata(prev=>({...prev,[e.target.name]:e.target.value}))}/> */}
             </div>
         </div>
     </div>
