@@ -38,11 +38,39 @@ function ChatBot() {
   }
 
   const showClicked = async(show)=>{
-    setInput(show)
+    setChats(prev=>[...prev,{sent:true,message:show}])
+    // setInput(date)
+    const res = await fetch("http://localhost:5000/chat", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({ input: input +" "+show})
+    })
+    const data = res.json()
+    setQuery(data.query)
+    setShows("")
+    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
   }
 
   const dateClicked = async(date)=>{
-   
+    setChats(prev=>[...prev,{sent:true,message:date}])
+    // setInput(date)
+    const res = await fetch("http://localhost:5000/chat", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({ input: query+" "+date})
+    })
+    const data = await res.json()
+
+    setDates("")
+    setQuery(data.query)
+    setShows(data.shows)
+    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
     setInput(date)
   }
   return (
