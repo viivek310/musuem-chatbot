@@ -72,7 +72,7 @@ function ChatBot() {
     setQuery(data.query)
     setShows(data.shows)
     setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
-    setInput(date)
+  
   }
   return (
     <aside className='border absolute h-[65svh] w-[22vw] bottom-13 right-10 bg-slate-200 rounded-lg rounded-br overflow-hidden py-3 px-5'>
