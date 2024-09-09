@@ -58,16 +58,16 @@ function Page() {
                     <h1 className='text-center mb-3'>Sign Up</h1>
                     <form onSubmit={handleSignUp}  className='space-y-3'>
                     <div>
-                        <input className='w-full border border-black rounded-lg px-3' type="text" name='username' value={signUp.username || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
+                        <input className='w-full border border-black rounded-lg px-3' type="text" name='username' placeholder='username' value={signUp.username || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                     </div>
                     <div>
-                        <input className='w-full border border-black rounded-lg px-3' type="mail" name='email' value={signUp.username || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
+                        <input className='w-full border border-black rounded-lg px-3' type="mail" name='email' value={signUp.email || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                     </div>
                     <div>
                         <input className='w-full border border-black rounded-lg px-3' type="password" name='password' value={signUp.password || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                     </div>
                     <div>
-                        <input className='w-full border border-black rounded-lg px-3' type="password" name='confirm-password' value={signUp.password || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
+                        <input className='w-full border border-black rounded-lg px-3' type="password" name='confirm-password' value={signUp.confirm-password || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                     </div>
                     <div className='button'>
                         <button type='submit' className='border border-gray-800 w-full my-3 rounded-full bg-purple-500 text-white'>Register</button>
