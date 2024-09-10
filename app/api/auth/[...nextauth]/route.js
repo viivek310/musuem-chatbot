@@ -31,7 +31,7 @@ export const authoptions = NextAuth({
             async authorize(credentials, req) {
                 // 
                res = await abc(credentials.username,credentials.password)
-               return res
+               return {abc: "jflsd"}
             }
         })
     ],
