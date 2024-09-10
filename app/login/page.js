@@ -5,6 +5,27 @@ function Page() {
     const [login, setLogin] = useState(true)
     const [loginData, setLoginData] = useState({})
     const [signUp, setSignUp] = useState({})
+    const [errors, setErrors] = useState([]);
+
+    const validatePassword = (password) => {
+        const errors = [];
+        if (password.length < 8) {
+            errors.push('Password must be at least 8 characters long.');
+        }
+        if (!/[A-Z]/.test(password)) {
+            errors.push('Password must contain at least one uppercase letter.');
+        }
+        if (!/[a-z]/.test(password)) {
+            errors.push('Password must contain at least one lowercase letter.');
+        }
+        if (!/[0-9]/.test(password)) {
+            errors.push('Password must contain at least one number.');
+        }
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            errors.push('Password must contain at least one special character.');
+        }
+        return errors;
+    };
 
     const handleform = async (e) => {
         // e.preventDefault()
@@ -33,6 +54,11 @@ function Page() {
         console.log(data)
         setSignUp({})
     }
+
+    const handleChange = (e) => {
+        setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
+        setErrors(validatePassword(e.target.value));
+      };
     return (
         <div className='flex justify-center items-center min-h-[80svh]'>
             {login ? <div className='border bg-slate-100 px-5 py-10 rounded-lg'>
@@ -42,7 +68,7 @@ function Page() {
                         <input className='w-full border border-black rounded-lg px-3' type="text" placeholder='username' name='username' value={loginData.username || ""} onChange={(e) => setLoginData(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                     </div>
                     <div>
-                        <input className='w-full border border-black rounded-lg px-3' type="password" name='password' value={loginData.password || ""} onChange={(e) => setLoginData(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
+                        <input className='w-full border border-black rounded-lg px-3' type="password" placeholder='password' name='password' value={loginData.password || ""} onChange={(e) => setLoginData(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                     </div>
                     <div className='button'>
                         <button type='submit' className='border border-gray-800 w-full my-3 rounded-full bg-purple-500 text-white'>Log in </button>
@@ -63,8 +89,15 @@ function Page() {
                             <input className='w-full border border-black rounded-lg px-3' type="email" name='email' placeholder='email' value={signUp.email || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                         </div>
                         <div>
-                            <input className='w-full border border-black rounded-lg px-3' type="password" name='password' placeholder='password' value={signUp.password || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
+                            <input className='w-full border border-black rounded-lg px-3' type="password" name='password' placeholder='password' value={signUp.password || ""} onChange={handleChange} />
                         </div>
+                        {errors.length > 0 && <div className="text-red-600 max-w-60">
+                            <ul className="list-disc space-y-2">
+                                {errors.map((error, index) => (
+                                    <li key={index}>{error}</li>
+                                ))}
+                            </ul>
+                        </div>}
                         <div>
                             <input className='w-full border border-black rounded-lg px-3' type="password" name='confirm' placeholder='confirm password' value={signUp.confirm || ""} onChange={(e) => setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))} />
                         </div>

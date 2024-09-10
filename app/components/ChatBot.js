@@ -22,7 +22,7 @@ function ChatBot() {
     setChats(prev => setChats([...prev, { sent: true, message: input }]))
     let send = String(input);
     
-    if(shows.length===0&&dates.length===0){
+    if(shows?.length===0&&dates?.length===0){
       send = String(query+" "+input)
     }
     console.log(send)
