@@ -45,7 +45,7 @@ function Page() {
             password: loginData.password,
             redirect: false
           })
-          console.log(res.user,"user")
+          console.log(res,"user")
         setLoginData({})
     }
     const handleSignUp = async (e) => {
