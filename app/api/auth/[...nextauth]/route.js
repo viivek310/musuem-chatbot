@@ -20,11 +20,29 @@ export const authoptions = NextAuth({
             },
             async authorize(credentials, req) {
 
-                const user = { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
+                try{
+                    const res = fetch("http://localhost:5000/login",{
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        method: "POST",
+                        body: JSON.stringify({res:"hello"})
+                    })
+    
+                    const data = await res.json()
+                    return data.user
+                }catch(error){
+                    console.log(error)
+                    throw new Error("erororor")
+                }
+                // console.log(data)
 
-                // if (user) {
-                //   // Any object returned will be saved in `user` property of the JWT
-                  return user
+                // const user = { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
+
+                // // if (user) {
+                // //   // Any object returned will be saved in `user` property of the JWT
+                //   return user
                 // } else {
                 //   // If you return null or false then the credentials will be rejected
                 //   return null
@@ -32,6 +50,7 @@ export const authoptions = NextAuth({
                 //   // throw new Error('error message') // Redirect to error page
                 //   // throw '/path/to/redirect'        // Redirect to a URL
                 // }
+
             }
         })
     ],
