@@ -12,7 +12,7 @@ export default function Home() {
           'Content-Type': 'application/json'
         },
         method: "POST",
-        body: JSON.stringify({username:"vivek",password: "alksjflskd"})
+        body: JSON.stringify({username:"vivek",password: "Vivek@1234"})
       })
       const data = await res.json()
       console.log(data)
