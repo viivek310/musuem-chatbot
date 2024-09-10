@@ -1,3 +1,4 @@
+"use client "
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -12,7 +13,7 @@ function Navbar() {
               <Image className='h-full w-full object-cover' src={"/images/Untitled design.jpg"} width={1000} height={1000} alt='logo'/>
             </Link>
         </div>
-        <ul className="navigation flex space-x-10 font-bold">
+        <ul className="navigation flex space-x-5 font-bold">
             <NavLink link={"/about"} page={"About"} />
             <NavLink link={"#"} page={"Shows"} />
             <NavLink link={"#"} page={"Booked Tickets"} />
