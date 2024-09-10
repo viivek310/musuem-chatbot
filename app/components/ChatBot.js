@@ -102,7 +102,7 @@ function ChatBot() {
 
   return (
     <aside>
-      {openChat&&<div className={`shadow-lg fixed z-50 h-[75svh] w-[22vw] bottom-[6rem] right-10 bg-slate-50 rounded-lg rounded-br overflow-hidden py-3 px-5 pt-14`}>
+      {openChat&&<div className={`shadow-lg fixed z-50 h-[75svh] w-[25vw] bottom-[6rem] right-10 bg-slate-50 rounded-lg rounded-br overflow-hidden py-3 px-5 pt-14`}>
         <div className="chatheader bg-violet-800 absolute w-full left-0 top-0 py-3 text-white text-center">
           Welcome to Museum Chatbot
         </div>
