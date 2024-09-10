@@ -31,7 +31,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ send })
+      body: JSON.stringify({ input: send })
     })
     setInput("")
     const data = await res.json()
