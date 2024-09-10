@@ -54,7 +54,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input: input + " " + show })
+      body: JSON.stringify({ input: query + " " + show })
     })
     const data = await res.json()
     setQuery(data.query)
