@@ -24,6 +24,7 @@ function ChatBot() {
     if(shows.length===0&&dates.length===0){
       send = query+" "+input
     }
+    console.log(send)
     const res = await fetch("http://localhost:5000/chat", {
       headers: {
         'Accept': 'application/json',
@@ -109,7 +110,7 @@ function ChatBot() {
           </div>
         </form>
       </div>}
-      <div onClick={()=>setOpenChat(prev=>!prev)} className="openchatbot absolute h-16 w-16 bg-purple-500 bottom-5 right-20   z-10 rounded-full grid place-items-center text-4xl text-white cursor-pointer">
+      <div onClick={()=>setOpenChat(prev=>!prev)} className="openchatbot absolute h-16 w-16 bg-purple-500 bottom-5 right-20   z-10 rounded-full grid place-items-center text-4xl text-white cursor-pointer select-none">
         <CiChat1 />
       </div>
     </aside>
