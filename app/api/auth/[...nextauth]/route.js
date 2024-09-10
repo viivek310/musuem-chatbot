@@ -11,7 +11,8 @@ const abc = async()=>{
         method: "POST",
         body: JSON.stringify({a: 1, b: 2})
     })
-    console.log(abc)
+    const data = await res.json()
+    console.log(data)
 }
 
 
