@@ -24,6 +24,7 @@ export const authoptions = NextAuth({
 
                 // if (user) {
                 //   // Any object returned will be saved in `user` property of the JWT
+                console.log(user)
                   return user
                 // } else {
                 //   // If you return null or false then the credentials will be rejected
