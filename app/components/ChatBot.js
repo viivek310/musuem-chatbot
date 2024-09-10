@@ -20,14 +20,17 @@ function ChatBot() {
   const sendMessage = async (e) => {
     e.preventDefault()
     setChats(prev => setChats([...prev, { sent: true, message: input }]))
-
+    let send = input;
+    if(shows.length===0&&dates.length===0){
+      send = query+" "+input
+    }
     const res = await fetch("http://localhost:5000/chat", {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input: query + " " + input })
+      body: JSON.stringify({ send })
     })
     setInput("")
     const data = await res.json()
