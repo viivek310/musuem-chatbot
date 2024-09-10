@@ -20,6 +20,7 @@ export const authoptions = NextAuth({
       },
       async authorize(credentials, req) {
        
+       try{
         const res = await fetch("http://localhost:5000/login",{
             headers: {
               'Accept': 'application/json',
@@ -32,6 +33,7 @@ export const authoptions = NextAuth({
               })
         })
         const data = await res.json()
+        console.log("auth",data)
         if (res.ok && data.user) {
             return data.user; 
           } else {
@@ -39,6 +41,9 @@ export const authoptions = NextAuth({
           }
 
 
+       }catch(Error){
+            console.log(Error)
+       }
       }
     })
   ],
