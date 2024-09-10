@@ -20,7 +20,7 @@ function ChatBot() {
   const sendMessage = async (e) => {
     e.preventDefault()
     setChats(prev => setChats([...prev, { sent: true, message: input }]))
-    let send = send = String(query+" "+input)
+    let send = String(query+" "+input)
     
       
     
