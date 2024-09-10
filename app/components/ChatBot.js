@@ -78,7 +78,7 @@ function ChatBot() {
     setDates("")
     setQuery(data.query)
     setShows(data.shows)
-    // setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
+    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
 
   }
 
