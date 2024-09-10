@@ -45,7 +45,11 @@ function Page() {
             password: loginData.password,
             redirect: false
           })
-          console.log(res,"user")
+
+          const session = await getSession()
+      const email = session?.user?.email
+          console.log(res,"user",email)
+          
         setLoginData({})
     }
     const handleSignUp = async (e) => {
