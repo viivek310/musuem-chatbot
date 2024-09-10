@@ -47,6 +47,7 @@ function ChatBot() {
   const showClicked = async (show) => {
     setChats(prev => [...prev, { sent: true, message: show }])
     // setInput(date)
+    console.log("show",show)
     const res = await fetch("http://localhost:5000/chat", {
       headers: {
         'Accept': 'application/json',
