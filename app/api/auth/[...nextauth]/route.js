@@ -31,7 +31,7 @@ export const authoptions = NextAuth({
             async authorize(credentials, req) {
                 // 
             //    res = await abc(credentials.username,credentials.password)
-               return {username: "bansi",password:"123"}
+               return {username: "bansi",password:"123",email:"email@gmail.com"}
             }
         })
     ],
