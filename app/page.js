@@ -7,6 +7,8 @@ export default function Home() {
   useEffect(()=>{
     window.scrollTo()
   },[])
+  console.log("NEXTAUTH_SECRET:", process.env.NEXTAUTH_SECRET);
+console.log("NEXTAUTH_URL:", process.env.NEXTAUTH_URL);
   return (
     <main className="py-10 px-40">
       <ChatBot />
