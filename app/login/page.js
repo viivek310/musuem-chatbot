@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react'
+import { useSession, signIn, signOut, getSession } from "next-auth/react"
 
 function Page() {
     const [login, setLogin] = useState(true)
@@ -29,16 +30,22 @@ function Page() {
 
     const handleform = async (e) => {
         // e.preventDefault()
-        const sendform = await fetch("http://localhost:5000/signup", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify()
-        })
-        const data = await sendform.json()
-        console.log(loginData)
+        // const sendform = await fetch("http://localhost:5000/signup", {
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     method: "POST",
+        //     body: JSON.stringify()
+        // })
+        // const data = await sendform.json()
+        // console.log(loginData.username)
+        const res = await signIn("credentials", {
+            username: loginData.username,
+            password: loginData.password,
+            redirect: false
+          })
+          console.log(res)
         setLoginData({})
     }
     const handleSignUp = async (e) => {
@@ -59,6 +66,29 @@ function Page() {
         setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
         setErrors(validatePassword(e.target.value));
       };
+
+    //   const handelSignIn = async (e) => {
+    //     e.preventDefault()
+    //     const res = await signIn("credentials", {
+    //       username,
+    //       password,
+    //       redirect: false
+    //     })
+    //     console.log(res)
+    //     // if (res.error) {
+    //     //   toast.error(res.error.replace("Error:", ""), {
+    //     //     position: "bottom-center",
+    //     //     autoClose: 3000,
+    //     //     hideProgressBar: false,
+    //     //     closeOnClick: true,
+    //     //     pauseOnHover: true,
+    //     //     draggable: true,
+    //     //     progress: undefined,
+    //     //     theme: "light",
+    //     //     transition: Bounce,
+    //     //   });
+    //     // }
+    //   }
     return (
         <div className='flex justify-center items-center min-h-[80svh]'>
             {login ? <div className='border bg-slate-100 px-5 py-10 rounded-lg'>
@@ -76,6 +106,9 @@ function Page() {
                 </form>
                 <div>
                     Don't have an account? <button className='text-blue-500' onClick={() => setLogin(false)}>Sign Up</button>
+                </div>
+                <div>
+                    <button onClick={signOut}>logout</button>
                 </div>
             </div>
                 :
