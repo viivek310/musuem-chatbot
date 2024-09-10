@@ -7,7 +7,7 @@ function Page() {
     const [signUp, setSignUp] = useState({})
 
     const handleform = async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         const sendform = await fetch("http://localhost:5000/signup", {
             headers: {
                 'Accept': 'application/json',
@@ -21,7 +21,7 @@ function Page() {
         setLoginData({})
     }
     const handleSignUp = async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         const sendform = await fetch("http://localhost:5000/signup", {
             headers: {
                 'Accept': 'application/json',
