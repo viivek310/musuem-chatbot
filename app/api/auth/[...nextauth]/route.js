@@ -37,7 +37,8 @@ export const authoptions = NextAuth({
         if (res.ok && data.user) {
             return data.user; 
           } else {
-            return null; 
+            throw new Error("error");
+             
           }
 
 
