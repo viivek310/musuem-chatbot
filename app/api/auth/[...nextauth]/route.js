@@ -35,6 +35,7 @@ export const authoptions = NextAuth({
         const data = await res.json()
         console.log("auth",data)
         if (res.ok && data.user) {
+            console.log(data.user)
             return data.user; 
           } else {
             throw new Error("error");
