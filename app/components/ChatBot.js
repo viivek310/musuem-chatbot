@@ -102,7 +102,7 @@ function ChatBot() {
 
   return (
     <aside>
-      {openChat&&<div className={`border absolute h-[65svh] w-[22vw] bottom-[6rem] right-10 bg-slate-200 rounded-lg rounded-br overflow-hidden py-3 px-5`}>
+      {openChat&&<div className={`border fixed z-50 h-[65svh] w-[22vw] bottom-[6rem] right-10 bg-slate-200 rounded-lg rounded-br overflow-hidden py-3 px-5`}>
         <div className="chat h-[95%] overflow-auto  border-red-500 text-white ">
 
           {chats?.map((chat, i) => (
@@ -126,7 +126,7 @@ function ChatBot() {
           </div>
         </form>
       </div>}
-      <div onClick={()=>setOpenChat(prev=>!prev)} className="openchatbot absolute h-16 w-16 bg-purple-500 bottom-5 right-20   z-10 rounded-full grid place-items-center text-4xl text-white cursor-pointer select-none">
+      <div onClick={()=>setOpenChat(prev=>!prev)} className="openchatbot fixed h-16 w-16 bg-purple-500 bottom-5 right-20   z-10 rounded-full grid place-items-center text-4xl text-white cursor-pointer select-none z-50">
         <CiChat1 />
       </div>
     </aside>

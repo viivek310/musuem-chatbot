@@ -2,6 +2,7 @@
 import Image from "next/image"
 import ChatBot from "./components/ChatBot";
 import { useEffect } from "react";
+import ShowComponent from "./components/ShowComponent";
 
 export default function Home() {
   // useEffect(()=>{
@@ -19,8 +20,7 @@ export default function Home() {
   //   }
   //   login()
   // },[])
-  console.log("NEXTAUTH_SECRET:", process.env.NEXTAUTH_SECRET);
-console.log("NEXTAUTH_URL:", process.env.NEXTAUTH_URL);
+
   return (
     <main className="py-10 px-40">
       <ChatBot />
@@ -33,6 +33,12 @@ console.log("NEXTAUTH_URL:", process.env.NEXTAUTH_URL);
           <Image  className="h-full w-full object-cover" src={"/images/banner1.avif"}j width={1000} height={1000} alt="musuem image"/>
         </div>
       </div>
+      
+      <ShowComponent image={"/images/museum.jpeg"}/>
+      <ShowComponent image={"/images/museum1.jpeg"}/>
+      <ShowComponent image={"/images/museum2.jpeg"}/>
+      <ShowComponent image={"/images/museum3.jpeg"}/>
+
     </main>
   );
 }

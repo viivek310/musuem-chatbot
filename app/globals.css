@@ -28,19 +28,23 @@ body {
 }
 
 /* In your global CSS file */
-.chat::-webkit-scrollbar {
+.chat::-webkit-scrollbar ,
+.des-ul::-webkit-scrollbar {
   width: 8px; /* Width of the scrollbar */
 }
 
-.chat::-webkit-scrollbar-thumb {
+.chat::-webkit-scrollbar-thumb,
+.des-ul::-webkit-scrollbar-thumb {
   background-color: #4A5568; /* Color of the scrollbar */
   border-radius: 4px; /* Rounded corners */
 }
 
-.chat::-webkit-scrollbar-thumb:hover {
+.chat::-webkit-scrollbar-thumb:hover,
+.des-ul::-webkit-scrollbar-thumb:hover {
   background-color: #2D3748; /* Color when hovered */
 }
 
+.chat::-webkit-scrollbar-track,
 .chat::-webkit-scrollbar-track {
   background-color: #E2E8F0; /* Track color */
 }
