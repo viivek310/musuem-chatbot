@@ -6,7 +6,7 @@ export const authOptions = {
     CredentialsProvider({
       async authorize(credentials) {
         // Call your Flask backend to authenticate the user
-        const res = await fetch('/api/login', {
+        const res = await fetch('api/login/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
