@@ -1,47 +1,49 @@
-import NextAuth from 'next-auth'
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
+export const authOptions = {
+  providers: [
+    CredentialsProvider({
+      async authorize(credentials) {
+        // Call your Flask backend to authenticate the user
+        const res = await fetch('http://localhost:5000/api/authenticate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: credentials.username,
+            password: credentials.password,
+          }),
+        });
 
-const abc = async(username,password)=>{
-    const res = await fetch("http://localhost:5000/login",{
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify({username,password})
-    })
-    const data = await res.json()
-    return data.user
-}
+        const user = await res.json();
 
-
-export const authoptions = NextAuth({
-    pages: {
-        signIn: '/login',
+        if (res.ok && user) {
+          // Return the user object if authentication is successful
+          return user;
+        } else {
+          // Return null if authentication fails
+          return null;
+        }
+      },
+    }),
+  ],
+  session: {
+    strategy: 'jwt', // Use JWT for sessions
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token = { ...token, ...user };
+      }
+      return token;
     },
-    providers: [
-        CredentialsProvider({
-            id: "credentials",
-            name: "Credentials",
-            credentials: {
-                username: { label: "Username", type: "text" },
-                password: { label: "Password", type: "password" }
-            },
-            async authorize(credentials, req) {
-                // 
-            //    res = await abc(credentials.username,credentials.password)
-               return {username: "bansi",password:"123",email:"email@gmail.com"}
-            }
-        })
-    ],
-    callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
-            if (account?.provider == "credentials") {
-                return true
-            }
-        },
+    async session({ session, token }) {
+      session.user = token;
+      return session;
     },
-})
+  },
+};
 
-export { authoptions as GET, authoptions as POST }
+export default NextAuth(authOptions);
