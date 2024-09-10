@@ -2,7 +2,17 @@ import NextAuth from 'next-auth'
 import CredentialsProvider from "next-auth/providers/credentials";
 
 
-
+const abc = async()=>{
+    const res = await fetch("/http://localhost:5000/login",{
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({a: 1, b: 2})
+    })
+    console.log(abc)
+}
 
 
 export const authoptions = NextAuth({
@@ -19,6 +29,7 @@ export const authoptions = NextAuth({
             },
             async authorize(credentials, req) {
                 // 
+                abc()
                 return {user:"jejldjsld"}
             }
         })
