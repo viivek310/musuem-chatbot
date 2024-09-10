@@ -5,7 +5,19 @@ import { useEffect } from "react";
 
 export default function Home() {
   useEffect(()=>{
-    window.scrollTo()
+    const login = async()=>{
+      const res = await fetch("http://localhost:5000/login", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({username:"vivek",password: "alksjflskd"})
+      })
+      const data = await res.json()
+      console.log(data)
+    }
+    login()
   },[])
   console.log("NEXTAUTH_SECRET:", process.env.NEXTAUTH_SECRET);
 console.log("NEXTAUTH_URL:", process.env.NEXTAUTH_URL);
