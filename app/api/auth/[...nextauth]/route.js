@@ -1,9 +1,5 @@
-import NextAuth from 'next-auth'
+import NextAuth from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
-
-
-
-
 
 export const authoptions = NextAuth({
     pages: {
@@ -18,27 +14,39 @@ export const authoptions = NextAuth({
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
-                const res = fetch("http://localhost:5000/login", {
+                // Replace with your Flask API endpoint
+                const res = await fetch("http://localhost:5000/login", {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     method: "POST",
-                    body: JSON.stringify({ a: 1, b: 2 })
-                })
-                const data = await res.json()
-                console.log(data)
-                return data
+                    body: JSON.stringify({
+                        username: credentials.username,
+                        password: credentials.password,
+                    })
+                });
+                
+                const data = await res.json();
+                
+                // If login is successful, return user data
+                if (res.ok && data?.user) {
+                    return data.user;
+                }
+                
+                // Return null if authentication fails
+                return null;
             }
         })
     ],
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
-            if (account?.provider == "credentials") {
-                return true
+            if (account?.provider === "credentials") {
+                return true;
             }
+            return false;
         },
     },
-})
+});
 
-export { authoptions as GET, authoptions as POST }
+export { authoptions as GET, authoptions as POST };
