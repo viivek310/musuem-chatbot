@@ -12,7 +12,7 @@ const abc = async(username,password)=>{
         body: JSON.stringify({username,password})
     })
     const data = await res.json()
-    return data
+    return data.user
 }
 
 
@@ -30,7 +30,8 @@ export const authoptions = NextAuth({
             },
             async authorize(credentials, req) {
                 // 
-               return abc(credentials.username,credentials.password)
+               res = await abc(credentials.username,credentials.password)
+               return res
             }
         })
     ],
