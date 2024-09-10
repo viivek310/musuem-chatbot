@@ -30,7 +30,7 @@ export const authoptions = NextAuth({
             },
             async authorize(credentials, req) {
                 // 
-               res = await abc(credentials.username,credentials.password)
+            //    res = await abc(credentials.username,credentials.password)
                return {abc: "jflsd"}
             }
         })
