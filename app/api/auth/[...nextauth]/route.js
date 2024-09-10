@@ -29,16 +29,7 @@ export const authOptions = {
       },
     }),
   ],
-  session: {
-    strategy: 'jwt', // Use JWT for sessions
-  },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token = { ...token, ...user };
-      }
-      return token;
-    },
     async session({ session, token }) {
       session.user = token;
       return session;
