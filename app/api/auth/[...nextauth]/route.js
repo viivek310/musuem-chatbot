@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 
 const abc = async()=>{
-    const res = await fetch("/http://localhost:5000/login",{
+    const res = await fetch("http://localhost:5000/login",{
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
