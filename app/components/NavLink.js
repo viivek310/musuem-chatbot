@@ -3,7 +3,7 @@ import React from 'react'
 
 function NavLink({link,page}) {
     return (
-        <li className='hover:scale-105 transition-transform duration-500 hover:text-gray-700'>
+        <li className=' hover:text-gray-500 transition duration-500'>
             <Link href={link}>{page}</Link>
         </li>
     )
