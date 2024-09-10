@@ -20,11 +20,10 @@ function ChatBot() {
   const sendMessage = async (e) => {
     e.preventDefault()
     setChats(prev => setChats([...prev, { sent: true, message: input }]))
-    let send = String(input);
+    let send = send = String(query+" "+input)
     
-    if(shows?.length===0&&dates?.length===0){
-      send = String(query+" "+input)
-    }
+      
+    
     console.log(send)
     const res = await fetch("http://localhost:5000/chat", {
       headers: {
