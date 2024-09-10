@@ -52,7 +52,7 @@ export const authoptions = NextAuth({
       }
     })
   ],
-
+  secret: process.env.NEXTAUTH_SECRET,
 })
 
 export { authoptions as GET, authoptions as POST }
