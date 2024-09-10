@@ -119,7 +119,7 @@ function ChatBot() {
 
           {dates && dates?.map((date, i) => (
             <div key={i} onClick={() => dateClicked(date)} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
-            float-left clear-both bg-slate-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>{date}</div>
+            float-left clear-both bg-purple-50-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>{date}</div>
           ))}
         </div>
         <form className="input border h-[8%] flex items-center border-black rounded-full overflow-hidden " onSubmit={sendMessage}>
