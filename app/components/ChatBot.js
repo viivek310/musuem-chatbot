@@ -102,8 +102,11 @@ function ChatBot() {
 
   return (
     <aside>
-      {openChat&&<div className={`border fixed z-50 h-[65svh] w-[22vw] bottom-[6rem] right-10 bg-slate-200 rounded-lg rounded-br overflow-hidden py-3 px-5`}>
-        <div className="chat h-[95%] overflow-auto  border-red-500 text-white ">
+      {openChat&&<div className={`shadow-lg fixed z-50 h-[75svh] w-[22vw] bottom-[6rem] right-10 bg-slate-50 rounded-lg rounded-br overflow-hidden py-3 px-5 pt-14`}>
+        <div className="chatheader bg-violet-800 absolute w-full left-0 top-0 py-3 text-white text-center">
+          Welcome to Museum Chatbot
+        </div>
+        <div className="chat h-[92%] overflow-auto  text-white ">
 
           {chats?.map((chat, i) => (
             <ChatMessage key={i} sent={chat.sent} message={chat.message} />
@@ -111,22 +114,22 @@ function ChatBot() {
 
           {shows && shows?.map((show, i) => (
             <div key={i} onClick={() => showClicked(show)} className={`chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
-            float-left clear-both bg-slate-500 my-2 cursor-pointer border border-white`}>{show}</div>
+            float-left clear-both bg-purple-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1`}>{show}</div>
           ))}
 
           {dates && dates?.map((date, i) => (
             <div key={i} onClick={() => dateClicked(date)} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
-            float-left clear-both bg-slate-500 my-2 cursor-pointer border border-white'>{date}</div>
+            float-left clear-both bg-slate-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>{date}</div>
           ))}
         </div>
-        <form className="input border h-[5%] flex items-center border-black rounded-lg overflow-hidden " onSubmit={sendMessage}>
+        <form className="input border h-[8%] flex items-center border-black rounded-full overflow-hidden " onSubmit={sendMessage}>
           <input className='h-full w-[80%] border-none outline-none px-2' type="text" value={input} onChange={(e) => setInput(e.target.value)} />
-          <div className="button flex justify-center w-[20%] items-center text-center ">
-            <button className='text-white w-full bg-purple-500 border-none outline-none'  >Send</button>
+          <div className="button flex justify-center h-full w-[20%] items-center text-center ">
+            <button className='text-white h-full w-full bg-violet-800 border-none outline-none'  >Send</button>
           </div>
         </form>
       </div>}
-      <div onClick={()=>setOpenChat(prev=>!prev)} className="openchatbot fixed h-16 w-16 bg-purple-500 bottom-5 right-20   z-10 rounded-full grid place-items-center text-4xl text-white cursor-pointer select-none z-50">
+      <div onClick={()=>setOpenChat(prev=>!prev)} className="openchatbot fixed h-16 w-16 bg-purple-500 bottom-5 right-20  rounded-full grid place-items-center text-4xl text-white cursor-pointer select-none z-50">
         <CiChat1 />
       </div>
     </aside>
