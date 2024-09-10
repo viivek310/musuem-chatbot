@@ -54,8 +54,13 @@ export const authoptions = NextAuth({
             }
         })
     ],
-    secret: process.env.NEXTAUTH_SECRET,
-    url: process.env.NEXTAUTH_URL
+    callbacks: {
+        async signIn({ user, account, profile, email, credentials }) {
+          if (account?.provider == "credentials") {
+            return true
+          }
+        },
+      },
 })
 
 export { authoptions as GET, authoptions as POST }
