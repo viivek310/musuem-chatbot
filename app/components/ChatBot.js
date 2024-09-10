@@ -56,7 +56,7 @@ function ChatBot() {
       method: "POST",
       body: JSON.stringify({ input: input + " " + show })
     })
-    const data = res.json()
+    const data = await res.json()
     setQuery(data.query)
     setShows("")
     setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
