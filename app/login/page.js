@@ -66,6 +66,8 @@ function Page() {
             const data = await sendform.json()
             console.log(data)
             setSignUp({})
+        }else{
+            console.log(errors,"failed")
         }
     }
 
