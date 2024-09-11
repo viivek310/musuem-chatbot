@@ -27,6 +27,14 @@ function Page() {
         ftch()
     }, [loginData])
 
+    useEffect(()=>{
+        const ftchsession = async()=>{
+            const session = await getSession()
+            console.log(session)
+        }
+        ftchsession()
+    },[getSession])
+
     const validatePassword = (password) => {
         const errors = [];
         if (password.length < 8) {
@@ -65,8 +73,7 @@ function Page() {
             redirect: false
         })
 
-        const session = await getSession()
-        console.log(session)
+        
 
         setLoginData({})
     }
