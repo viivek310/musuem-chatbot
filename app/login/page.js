@@ -23,7 +23,7 @@ function Page() {
                 body: JSON.stringify({username: loginData.username,password: loginData.password})
             })
             const data = await res.json()
-            console.log(data?.user,"this is userdata")
+            console.log(data?.user)
             setUsername(data?.user?.username)
             setPassword(data?.user?.password)
         }
@@ -70,14 +70,14 @@ function Page() {
         // })
         // const data = await sendform.json()
         // console.log(loginData.username)
-        console.log(username,"pass",password)
+        console.log(username,password)
         const res = await signIn("credentials", {
             username,
             password,
             redirect: false
         })
 
-        
+        console.log(res)
 
         setLoginData({})
     }
