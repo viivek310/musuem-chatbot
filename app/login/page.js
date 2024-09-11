@@ -66,8 +66,8 @@ function Page() {
         })
 
         const session = await getSession()
-        const email = session?.user?.email
-        console.log(res, "user", email)
+        const username = session?.user?.username
+        console.log(res, "user", username)
 
         setLoginData({})
     }
