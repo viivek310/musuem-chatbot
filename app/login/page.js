@@ -17,7 +17,7 @@ function Page() {
             console.log(session, "session");
         };
         fetchSession();
-    }, []);
+    }, [username]);
 
     const validatePassword = (password) => {
         const errors = [];
