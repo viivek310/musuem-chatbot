@@ -16,7 +16,7 @@ function Page() {
                     'Content-Type': 'application/json'
                 },
                 method: "POST",
-                body: JSON.stringify({loginData})
+                body: JSON.stringify({username: loginData.username,password: loginData.password})
             })
             const data = await res.json()
             console.log(data)
