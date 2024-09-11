@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSession, signIn, signOut, getSession } from "next-auth/react"
 
 function Page() {
@@ -7,6 +7,22 @@ function Page() {
     const [loginData, setLoginData] = useState({})
     const [signUp, setSignUp] = useState({})
     const [errors, setErrors] = useState([]);
+
+    useEffect(() => {
+        const ftch = async () => {
+            const res = await fetch("http://localhost:5000/login", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify()
+            })
+            const data = await res.json()
+            console.log(data)
+        }
+        ftch()
+    }, [loginData])
 
     const validatePassword = (password) => {
         const errors = [];
@@ -44,16 +60,16 @@ function Page() {
             username: loginData.username,
             password: loginData.password,
             redirect: false
-          })
+        })
 
-          const session = await getSession()
-      const email = session?.user?.email
-          console.log(res,"user",email)
-          
+        const session = await getSession()
+        const email = session?.user?.email
+        console.log(res, "user", email)
+
         setLoginData({})
     }
     const handleSignUp = async (e) => {
-        if(errors.length===0){
+        if (errors.length === 0) {
             console.log(errors)
             const sendform = await fetch("http://localhost:5000/signup", {
                 headers: {
@@ -66,15 +82,15 @@ function Page() {
             const data = await sendform.json()
             console.log(data)
             setSignUp({})
-        }else{
-            console.log(errors,"failed")
+        } else {
+            console.log(errors, "failed")
         }
     }
 
     const handleChange = (e) => {
         setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
         setErrors(validatePassword(e.target.value));
-      };
+    };
 
     //   const handelSignIn = async (e) => {
     //     e.preventDefault()

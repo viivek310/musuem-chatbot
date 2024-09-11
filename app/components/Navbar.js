@@ -1,10 +1,11 @@
 "use client "
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavLink from './NavLink'
 
 function Navbar() {
+  
   return (
     <header className='sticky top-0 z-50'>
       <nav className='border-2 shadow-md flex items-center justify-around bg-white  w-full'>
