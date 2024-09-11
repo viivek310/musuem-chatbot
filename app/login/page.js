@@ -30,7 +30,7 @@ function Page() {
     useEffect(()=>{
         const ftchsession = async()=>{
             const session = await getSession()
-            console.log(session)
+            console.log(session,"session")
         }
         ftchsession()
     },[getSession])
