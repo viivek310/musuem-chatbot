@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { useSession, signIn, signOut, getSession } from "next-auth/react"
+import { useRouter } from 'next/navigation'
 
 function Page() {
     const [login, setLogin] = useState(true)
@@ -33,7 +34,7 @@ function Page() {
             console.log(session,"session")
         }
         ftchsession()
-    },[useSession,username,password])
+    },[useSession,username,password,loginData])
 
     const validatePassword = (password) => {
         const errors = [];
