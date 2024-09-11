@@ -32,6 +32,12 @@ export const authoptions = NextAuth({
         return true
       }
     },
+    async session({ session, token }) {
+      if (token.user) {
+        session.user = token.user;
+      }
+      return session;
+    }
     
   },
 })
