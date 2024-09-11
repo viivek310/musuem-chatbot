@@ -53,17 +53,20 @@ function Page() {
         setLoginData({})
     }
     const handleSignUp = async (e) => {
-        const sendform = await fetch("http://localhost:5000/signup", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(signUp)
-        })
-        const data = await sendform.json()
-        console.log(data)
-        setSignUp({})
+        if(!errors){
+            console.log(errors)
+            const sendform = await fetch("http://localhost:5000/signup", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(signUp)
+            })
+            const data = await sendform.json()
+            console.log(data)
+            setSignUp({})
+        }
     }
 
     const handleChange = (e) => {
