@@ -70,6 +70,7 @@ function Page() {
         // })
         // const data = await sendform.json()
         // console.log(loginData.username)
+        console.log(username,"pass",password)
         const res = await signIn("credentials", {
             username,
             password,
