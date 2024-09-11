@@ -37,8 +37,8 @@ function Page() {
             const ses = useSession()
             console.log(ses,"useses")
         }
-        ftch
-    },[useSession])
+        ftch()
+    },[useSession,username,password])
 
     const validatePassword = (password) => {
         const errors = [];
