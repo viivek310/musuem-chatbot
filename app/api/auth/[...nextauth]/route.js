@@ -20,6 +20,7 @@ export const authoptions = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
+        console.log(credentials)
         const user={username: credentials.username, email: credentials.email}
         return user
       }
@@ -31,6 +32,7 @@ export const authoptions = NextAuth({
         return true
       }
     },
+    
   },
 })
 
