@@ -11,6 +11,7 @@ function Page() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+
     useEffect(() => {
         const ftch = async () => {
             const res = await fetch("http://localhost:5000/login", {
@@ -22,6 +23,7 @@ function Page() {
                 body: JSON.stringify({username: loginData.username,password: loginData.password})
             })
             const data = await res.json()
+            console.log(data,"dataa")
             setUsername(data.username)
             setPassword(data.password)
         }
@@ -34,7 +36,7 @@ function Page() {
             console.log(session,"session")
         }
         ftchsession()
-    },[useSession,username,password,loginData])
+    },[useSession,username,password])
 
     const validatePassword = (password) => {
         const errors = [];
