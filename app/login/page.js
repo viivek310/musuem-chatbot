@@ -23,7 +23,7 @@ function Page() {
                 body: JSON.stringify({username: loginData.username,password: loginData.password})
             })
             const data = await res.json()
-            console.log(data?.user)
+            console.log(data?.user,"this is userdata")
             setUsername(data?.user?.username)
             setPassword(data?.user?.password)
         }
