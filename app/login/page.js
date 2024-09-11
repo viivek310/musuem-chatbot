@@ -28,12 +28,17 @@ function Page() {
     }, [loginData])
 
     useEffect(()=>{
-        const ftchsession = async()=>{
-            const session = await getSession()
-            console.log(session,"session")
+        // const ftchsession = async()=>{
+        //     const session = await getSession()
+        //     console.log(session,"session")
+        // }
+        // ftchsession()
+        const ftch = async()=>{
+            const ses = useSession()
+            console.log(ses,"useses")
         }
-        ftchsession()
-    },[getSession])
+        ftch
+    },[useSession])
 
     const validatePassword = (password) => {
         const errors = [];
