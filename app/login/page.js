@@ -35,7 +35,7 @@ function Page() {
         // ftchsession()
         const ftch = async()=>{
             const ses = useSession()
-            console.log(ses,"useses")
+            console.log(ses,"usesesafs")
         }
         ftch()
     },[useSession,username,password])
