@@ -53,7 +53,7 @@ function Page() {
         setLoginData({})
     }
     const handleSignUp = async (e) => {
-        if(!errors){
+        if(errors.length===0){
             console.log(errors)
             const sendform = await fetch("http://localhost:5000/signup", {
                 headers: {
