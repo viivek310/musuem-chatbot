@@ -24,8 +24,8 @@ function Page() {
             })
             const data = await res.json()
             console.log(data,"dataa")
-            setUsername(data.username)
-            setPassword(data.password)
+            setUsername(data.user.username)
+            setPassword(data.user.password)
         }
         ftch()
     }, [loginData])
