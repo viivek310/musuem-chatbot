@@ -124,7 +124,7 @@ function ChatBot() {
           </div>
         </form>
       </div>}
-      <div onClick={()=>setOpenChat(prev=>!prev)} className="openchatbot fixed p-3 md:p-0 md:h-16 md:w-16 bg-purple-500 bottom-5 right-[10%]  rounded-full grid place-items-center text-2xl md:text-4xl text-white cursor-pointer select-none z-50">
+      <div onClick={()=>setOpenChat(prev=>!prev)} className="openchatbot fixed p-3 md:p-0 md:h-16 md:w-16 bg-purple-500 bottom-5 right-[10%]  rounded-full grid place-items-center text-3xl md:text-4xl text-white cursor-pointer select-none z-50">
         <CiChat1 />
       </div>
     </aside>
