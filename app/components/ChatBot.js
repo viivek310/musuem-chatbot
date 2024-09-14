@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ChatMessage from './ChatMessage'
 import { CiChat1 } from "react-icons/ci";
 
@@ -14,6 +14,21 @@ function ChatBot() {
   const [selectedDate, setSelectedDate] = useState("")
   const [selectedShow, setSelectedShow] = useState("")
   const [openChat,setOpenChat] = useState(false)
+  const chatContainerRef = useRef(null)
+
+
+
+  const scrollToBottom = () => {
+    chatContainerRef.current?.scrollTo({
+      top: chatContainerRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chats]);
+
   // console.log(input)
 
   useEffect(()=>{
@@ -35,9 +50,8 @@ function ChatBot() {
     e.preventDefault()
     setChats(prev => setChats([...prev, { sent: true, message: input }]))
     let send = String(query+" "+input)
-    
-      
-    
+
+    setInput("")
     console.log(send)
     const res = await fetch("http://localhost:5000/chat", {
       headers: {
@@ -47,7 +61,6 @@ function ChatBot() {
       method: "POST",
       body: JSON.stringify({ input: send })
     })
-    setInput("")
     const data = await res.json()
     console.log(data)
     // console.log(data.response)
@@ -55,7 +68,6 @@ function ChatBot() {
     setQuery(data.query)
     setShows(data.shows)
     setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
-
   }
 
   const showClicked = async (show) => {
@@ -106,7 +118,7 @@ function ChatBot() {
         <div className="chatheader bg-violet-800 absolute w-full left-0 top-0 py-3 text-white text-center">
           Welcome to Museum Chatbot
         </div>
-        <div className="chat h-[92%] overflow-auto  text-white ">
+        <div className="chat h-[92%] overflow-auto  text-white " ref={chatContainerRef}>
 
           {chats?.map((chat, i) => (
             <ChatMessage key={i} sent={chat.sent} message={chat.message} />

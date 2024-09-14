@@ -30,7 +30,7 @@ body {
 /* In your global CSS file */
 .chat::-webkit-scrollbar ,
 .des-ul::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
+  width: 0px; /* Width of the scrollbar */
 }
 
 .chat::-webkit-scrollbar-thumb,
