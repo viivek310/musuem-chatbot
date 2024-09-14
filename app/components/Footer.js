@@ -7,7 +7,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className='h-52 bg-white border  px-40 py-5 flex items-center justify-center space-x-52'>
+    <footer className='min-h-52 bg-white border md:px-5 lg:px-20 xl:px-40 py-5 flex items-center justify-center flex-col md:flex-row space-y-10 md:space-x-14 lg:space-x-32  xl:space-x-52'>
       <div className="logo w-40 h-fit">
         <Image className='w-full h-full object-cover' src={"/images/Untitled design.jpg"} width={1000} height={1000} alt='logo' />
       </div>

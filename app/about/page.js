@@ -7,14 +7,14 @@ function Page() {
             <div className="banner bg-gray-100">
                 <h1 className='text-4xl text-center my-3'>About</h1>
                 <div className="banner h-[80svh]">
-                    <Image className='w-full h-full object-cover' src={"/images/banner.jpeg"} width={1000} height={1000} alt='about image' />
+                    <Image className='w-full h-full object-contain md:object-cover' src={"/images/banner.jpeg"} width={1000} height={1000} alt='about image' />
                 </div>
                 <div className="text py-8">
                     <p className='w-[50%] mx-auto text-base'>We’re a charity caring for the Royal Collection and looking after visitors to the royal palaces. The income from your ticket contributes to the care and conservation of the Royal Collection. Through our work, from exhibitions and learning programmes to publications and retail products, we aim to ensure that the Royal Collection and Palaces are valued and enjoyed by everyone.</p>
                 </div>
             </div>
-            <div className="collection my-10 w-[80vw] bg-gray-100 m-auto flex">
-                <div className="img w-[50%] overflow-hidden">
+            <div className="collection my-10 mdw-[80vw] bg-gray-100 m-auto flex">
+                <div className="img md:w-[50%] overflow-hidden">
                     <Image className='w-full h-full object-cover hover:scale-110 transition-transform duration-500' src={"/images/collection.jpeg"} width={1000} height={1000} alt='collection image' />
                 </div>
                 <div className="text flex flex-col justify-center items-center w-[50%] px-5">
@@ -23,8 +23,8 @@ function Page() {
                 </div>
             </div>
 
-            <div className='h-[80svh] border bg-gray-100 px-32 py-10 flex items-center gap-5'>
-                <div className="reports w-[50%]  h-[60svh]  self-start rounded-lg  relative">
+            <div className='md:h-[80svh] border bg-gray-100 md:px-32 py-10 flex gap-52 md:gap-5 flex-col md:flex-row items-center '>
+                <div className="reports w-full md:w-[50%]  h-[60svh]  self-start rounded-lg  relative">
                     <div className='img w-full h-full overflow-hidden'>
                         <Image className='w-full h-full object-cover rounded-lg hover:scale-110 transition-transform duration-500' src={"/images/report.jpeg"} width={1000} height={1000} alt='report' />
                     </div>
@@ -34,7 +34,7 @@ function Page() {
                     </div>
 
                 </div>
-                <div className="working w-[50%]  h-[60svh]  self-end   relative">
+                <div className="working md:w-[50%]  h-[60svh]  self-end   relative">
                     <div className='img w-full h-full overflow-hidden'>
                         <Image className='w-full h-full object-cover rounded-lg hover:scale-110 transition-transform duration-500' src={"/images/working.jpeg"} width={1000} height={1000} alt='report' />
                     </div>

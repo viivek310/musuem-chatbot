@@ -22,14 +22,14 @@ export default function Home() {
   // },[])
 
   return (
-    <main className="py-10 px-40">
+    <main className="py-10 sm:px-5 lg:px-20 xl:px-40">
       <ChatBot />
-      <div className="banner flex h-[20rem]  ">
-        <div className="text w-1/2 flex flex-col justify-center  gap-5 p-10">
+      <div className="banner flex lg:h-[20rem]  flex-col lg:flex-row items-center border">
+        <div className="text text-center lg:text-left lg:w-1/2 flex flex-col justify-center  gap-5 p-10">
           <h1 className="font-bold text-4xl">Famous Musuem Tickets & Guided Tours</h1>
           <p>Headout is an authorized and trusted partner of the venue, offering curated experiences to enjoy this attraction. This is not the venue's website.</p>
         </div>
-        <div className="image w-1/2 rounded-2xl overflow-hidden">
+        <div className="image w-1/2 h-full rounded-2xl overflow-hidden">
           <Image  className="h-full w-full object-cover" src={"/images/banner1.avif"}j width={1000} height={1000} alt="musuem image"/>
         </div>
       </div>

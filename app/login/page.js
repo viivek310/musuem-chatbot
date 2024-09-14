@@ -2,14 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Page() {
     const [login, setLogin] = useState(true);
     const [loginData, setLoginData] = useState({});
     const [signUp, setSignUp] = useState({});
     const [errors, setErrors] = useState([]);
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    // const [username, setUsername] = useState("");
+    // const [password, setPassword] = useState("");
 
     useEffect(() => {
         const fetchSession = async () => {
@@ -17,7 +19,11 @@ function Page() {
             console.log(session, "session");
         };
         fetchSession();
-    }, [username]);
+    }, []);
+
+    // useEffect(()=>{
+    //     const fet
+    // },[])
 
     const validatePassword = (password) => {
         const errors = [];
@@ -31,12 +37,39 @@ function Page() {
 
     const handleForm = async (e) => {
         e.preventDefault();
-        const res = await signIn("credentials", {
-            username,
-            password,
-            redirect: false
-        });
-        console.log(res);
+        const getcredentials = async () => {
+            const res = await fetch("http://localhost:5000/login", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({ username: loginData.username ,password: loginData.password})
+            })
+
+            const data = await res.json()
+            if (data.user) {
+                const login = await signIn("credentials", {
+                    username:data.user.username,
+                    password:data.user.password,
+                    redirect: false
+                });
+                console.log(login)
+            } else {
+                toast('Wrong credentials', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    });
+            }
+        }
+        getcredentials()
     };
 
     const handleSignUp = async (e) => {
@@ -173,6 +206,20 @@ function Page() {
                     </div>
                 </div>
             )}
+
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+            />
         </div>
     );
 }
