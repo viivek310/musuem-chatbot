@@ -15,7 +15,7 @@ function Navbar() {
   // },[router])
   return (
     <header className='sticky top-0 z-50'>
-      <nav className=' shadow-md flex items-center justify-around bg-white  w-full relative'>
+      <nav className='border-0 shadow-md flex items-center justify-around bg-white  w-full relative'>
         <div onClick={()=>setOpen(false)} className="logo h-20  ">
             <Link href={"/"}>
               <Image className='h-full w-full object-cover' src={"/images/Untitled design.jpg"} width={1000} height={1000} alt='logo'/>
