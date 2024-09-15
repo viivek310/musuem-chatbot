@@ -25,7 +25,7 @@ function ShowComponent({image}) {
             ₹100
           </div>
           <div className=''>
-            <button className="w-full bg-violet-600 text-xs md:text-base text-white my-3 border-none md:py-3 rounded-lg flex">Check availibility</button>
+            <button className="w-full bg-violet-600 text-xs md:text-base text-white my-3 border-none md:py-3 rounded-lg flex justify-center">Check availibility</button>
           </div>
         </div>
       </div>

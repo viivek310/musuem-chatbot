@@ -4,15 +4,16 @@ import ChatMessage from './ChatMessage'
 import { CiChat1 } from "react-icons/ci";
 
 function ChatBot() {
-  const [chats, setChats] = useState([{ sent: false, message: "Hello there! 😊 I'm here to help you with any questions or needs you might have. What can I do for you today?" }])
+  // const [chats, setChats] = useState([{ sent: false, message: "Hello there! 😊 I'm here to help you with any questions or needs you might have. What can I do for you today?" }])
+  const [chats, setChats] = useState([{ sent: false, message: "હેલો, તમે કેમ છો" }])
+  
+
   const [input, setInput] = useState("")
   const [send, setSend] = useState("")
   const [response, setResponse] = useState("")
   const [query, setQuery] = useState("")
   const [shows, setShows] = useState([])
   const [dates, setDates] = useState([])
-  const [selectedDate, setSelectedDate] = useState("")
-  const [selectedShow, setSelectedShow] = useState("")
   const [openChat,setOpenChat] = useState(false)
   const chatContainerRef = useRef(null)
 
