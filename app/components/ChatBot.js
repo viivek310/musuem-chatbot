@@ -74,7 +74,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input: query + " " + show })
+      body: JSON.stringify({ input: query + " " + show ,email: session?.user?.email})
     })
     const data = await res.json()
     setQuery(data.query)
@@ -91,7 +91,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input: query + " " + date })
+      body: JSON.stringify({ input: query + " " + date ,email: session?.user?.email })
     })
     const data = await res.json()
 
