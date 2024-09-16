@@ -14,16 +14,7 @@ function Page() {
     // const [username, setUsername] = useState("");
     // const [password, setPassword] = useState("");
 
-    const fetchSession = async () => {
-        const session = await getSession();
-        console.log(session, "session");
-        if(session?.user){
-            router.back()
-        }
-    };
-    useEffect(() => {
-        fetchSession();
-    }, [handleForm]);
+   
 
     // useEffect(()=>{
     //     const fet
@@ -114,6 +105,17 @@ function Page() {
             console.log(validationErrors, "failed");
         }
     };
+
+    const fetchSession = async () => {
+        const session = await getSession();
+        console.log(session, "session");
+        if(session?.user){
+            router.back()
+        }
+    };
+    useEffect(() => {
+        fetchSession();
+    }, [handleForm]);
 
     const handleChange = (e) => {
         setSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }));
