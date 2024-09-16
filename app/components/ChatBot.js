@@ -26,7 +26,7 @@ function ChatBot() {
   };
   useEffect(() => {
     fetchSession();
-  }, [router,sess]);
+  }, [sess]);
 
 
   const scrollToBottom = () => {
