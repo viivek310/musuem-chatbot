@@ -86,6 +86,19 @@ function Page() {
             });
             const data = await sendform.json();
             console.log(data);
+            if(data.res){
+                toast.success(data.res, {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    });
+            }
             setSignUp({});
         } else {
             setErrors(validationErrors);
