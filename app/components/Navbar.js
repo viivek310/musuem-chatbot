@@ -7,6 +7,7 @@ import Hamburger from 'hamburger-react'
 import { useRouter } from 'next/navigation'
 import { getSession, signOut, useSession } from 'next-auth/react'
 
+
 function Navbar() {
   const [isOpen, setOpen] = useState(false)
   const router = useRouter()
@@ -18,7 +19,7 @@ function Navbar() {
     console.log(session, "navbar");
    setSession(session)
   };
-  useEffect(() => {
+  useEffect(() => {   
     fetchSession();
   }, [router,sess]);
 
