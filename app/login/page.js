@@ -43,7 +43,7 @@ function Page() {
             })
 
             const data = await res.json()
-            console.log(data,"form database")
+            // console.log(data,"form database")
             if (data.user) {
                 const login = await signIn("credentials", {
                     username:data.user.username,
@@ -85,7 +85,6 @@ function Page() {
                 body: JSON.stringify(signUp)
             });
             const data = await sendform.json();
-            console.log(data);
             if(data.res){
                 toast.success(data.res, {
                     position: "bottom-center",

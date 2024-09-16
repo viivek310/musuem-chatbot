@@ -15,7 +15,7 @@ function Navbar() {
 
   const fetchSession = async () => {
     const session = await getSession();
-    console.log(session, "session");
+    console.log(session, "navbar");
    setSession(session)
   };
   useEffect(() => {
