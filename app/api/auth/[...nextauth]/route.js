@@ -21,7 +21,7 @@ export const authoptions = NextAuth({
       },
       async authorize(credentials, req) {
         console.log(credentials)
-        const user={name: "vivekbahi",email:"viv@tgmail.com"}
+        const user={name: credentials.username}
         return user
       }
     })
