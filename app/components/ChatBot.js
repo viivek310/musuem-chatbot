@@ -105,8 +105,8 @@ function ChatBot() {
 
   }
 
-  const handleBooking = async(res)=>{
-    setChats(prev => [...prev, { sent: true, message: res }])
+  const handleBooking = async(des)=>{
+    setChats(prev => [...prev, { sent: true, message: des }])
     // setInput(date)
     const res = await fetch("http://localhost:5000/chat", {
       headers: {
@@ -114,7 +114,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({booking_response: res,ticket_details})
+      body: JSON.stringify({booking_response: des,ticket_details})
     })
     const data = await res.json()
 
