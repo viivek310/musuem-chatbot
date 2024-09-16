@@ -117,7 +117,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({booking_response: des,ticket_details})
+      body: JSON.stringify({booking_response: des,ticket_details,email: session?.user?.email})
     })
     const data = await res.json()
 
