@@ -109,6 +109,7 @@ function ChatBot() {
   }
 
   const handleBooking = async(des)=>{
+    console.log("email",email: session?.user?.email)
     setChats(prev => [...prev, { sent: true, message: des }])
     // setInput(date)
     const res = await fetch("http://localhost:5000/chat", {
@@ -117,7 +118,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({booking_response: des,ticket_details,email: session?.user?.email})
+      body: JSON.stringify({booking_response: des,ticket_details, email: session?.user?.email})
     })
     const data = await res.json()
 
