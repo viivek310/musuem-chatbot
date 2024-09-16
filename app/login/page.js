@@ -17,7 +17,7 @@ function Page() {
     const fetchSession = async () => {
         const session = await getSession();
         console.log(session, "session");
-        if(session.user){
+        if(session?.user){
             router.back()
         }
     };

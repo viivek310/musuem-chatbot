@@ -35,7 +35,7 @@ function Navbar() {
           <NavLink link={"#"} page={"Shows"} fun={setOpen} />
           <NavLink link={"#"} page={"Booked Tickets"} fun={setOpen} />
           <NavLink link={"#"} page={"Guide"} fun={setOpen} />
-          {session.user?<button onClick={signOut}>Logout</button>:<NavLink link={"/login"} page={"Login"} fun={setOpen} />}
+          {session?.user?<button onClick={signOut}>Logout</button>:<NavLink link={"/login"} page={"Login"} fun={setOpen} />}
         </ul>
         <span className=' md:hidden'><Hamburger toggled={isOpen} toggle={setOpen} /></span>
       </nav>
