@@ -10,16 +10,20 @@ function Page() {
     const [loginData, setLoginData] = useState({});
     const [signUp, setSignUp] = useState({});
     const [errors, setErrors] = useState([]);
+    const router = useRouter()
     // const [username, setUsername] = useState("");
     // const [password, setPassword] = useState("");
 
+    const fetchSession = async () => {
+        const session = await getSession();
+        console.log(session, "session");
+        if(session.user){
+            router.back()
+        }
+    };
     useEffect(() => {
-        const fetchSession = async () => {
-            const session = await getSession();
-            console.log(session, "session");
-        };
         fetchSession();
-    }, []);
+    }, [handleForm]);
 
     // useEffect(()=>{
     //     const fet
@@ -53,8 +57,12 @@ function Page() {
                 const login = await signIn("credentials", {
                     username:data.user.username,
                     password:data.user.password,
+                    email:data.user.email,
                     redirect: false
                 });
+                if(login.ok){
+                    router.push("/")
+                }
                 // console.log(login)
             } else {
                 toast('Wrong credentials', {
