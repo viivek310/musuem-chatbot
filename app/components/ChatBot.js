@@ -17,11 +17,12 @@ function ChatBot() {
   const [openChat,setOpenChat] = useState(false)
   const chatContainerRef = useRef(null)
   const [session,setSession] = useState(null)
+  const [ticket_details,setTicketDetails] = useState()
   const sess = useSession()
 
   const fetchSession = async () => {
     const s1 = await getSession();
-    console.log(s1, "navbar");
+    // console.log(s1, "navbar");
     setSession(s1)
   };
   useEffect(() => {
@@ -61,6 +62,7 @@ function ChatBot() {
     setDates(data.date_list)
     setQuery(data.query)
     setShows(data.shows)
+    setTicketDetails(data.ticket_details)
     setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
   }
 
@@ -103,7 +105,25 @@ function ChatBot() {
 
   }
 
- 
+  const handleBooking = async(res)=>{
+    setChats(prev => [...prev, { sent: true, message: res }])
+    // setInput(date)
+    const res = await fetch("http://localhost:5000/chat", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({booking_response: res,ticket_details})
+    })
+    const data = await res.json()
+
+    setTicketDetails({})
+    console.log(data.query)
+    setQuery(data.query)
+    setShows(data.shows)
+    setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
+  }
 
 
   return (
@@ -127,6 +147,15 @@ function ChatBot() {
             <div key={i} onClick={() => dateClicked(date)} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
             float-left clear-both bg-purple-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>{date}</div>
           ))}
+
+          {ticketDetails && 
+            <>
+            <div key={i} onClick={()=>handleBooking("confirm")} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
+            float-left clear-both bg-purple-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>Confirm</div>
+            <div key={i} onClick={()=>handleBooking("cancel")} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
+            float-left clear-both bg-purple-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>Cancel</div>
+            </>
+          }
         </div>
         <form className="input border h-[8%] flex items-center border-black rounded-full overflow-hidden " onSubmit={sendMessage}>
           <input className='h-full w-[80%] border-none outline-none px-2' type="text" value={input} onChange={(e) => setInput(e.target.value)} />
