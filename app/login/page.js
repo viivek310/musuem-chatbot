@@ -48,13 +48,14 @@ function Page() {
             })
 
             const data = await res.json()
+            console.log(data,"form database")
             if (data.user) {
                 const login = await signIn("credentials", {
                     username:data.user.username,
                     password:data.user.password,
                     redirect: false
                 });
-                console.log(login)
+                // console.log(login)
             } else {
                 toast('Wrong credentials', {
                     position: "top-right",
