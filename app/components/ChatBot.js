@@ -79,9 +79,10 @@ function ChatBot() {
       body: JSON.stringify({ input: query + " " + show ,email: session?.user?.email})
     })
     const data = await res.json()
-    console.log("ticketdetail",data)
+    // console.log("ticketdetail",data)
     setQuery(data.query)
     setShows("")
+    console.log(data.ticket_details,"received data")
     setTicketDetails(data.ticket_details)
     setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
   }
@@ -152,9 +153,9 @@ function ChatBot() {
 
           {ticket_details && 
             <>
-            <div key={i} onClick={()=>handleBooking("confirm")} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
+            <div onClick={()=>handleBooking("confirm")} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
             float-left clear-both bg-purple-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>Confirm</div>
-            <div key={i} onClick={()=>handleBooking("cancel")} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
+            <div onClick={()=>handleBooking("cancel")} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
             float-left clear-both bg-purple-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>Cancel</div>
             </>
           }
