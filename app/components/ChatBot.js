@@ -79,6 +79,7 @@ function ChatBot() {
       body: JSON.stringify({ input: query + " " + show ,email: session?.user?.email})
     })
     const data = await res.json()
+    console.log("ticketdetail",data)
     setQuery(data.query)
     setShows("")
     setTicketDetails(data.ticket_details)
