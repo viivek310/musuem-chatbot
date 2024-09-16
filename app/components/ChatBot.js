@@ -148,7 +148,7 @@ function ChatBot() {
             float-left clear-both bg-purple-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>{date}</div>
           ))}
 
-          {ticketDetails && 
+          {ticket_details && 
             <>
             <div key={i} onClick={()=>handleBooking("confirm")} className='chat px-4 rounded-lg rounded-bl-none w-fit max-w-[70%] break-words
             float-left clear-both bg-purple-500 my-1 cursor-pointer border border-white hover:bg-purple-700 py-1'>Confirm</div>
