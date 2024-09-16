@@ -2,11 +2,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import ChatMessage from './ChatMessage'
 import { CiChat1 } from "react-icons/ci";
+import { getSession, useSession } from 'next-auth/react';
 
 function ChatBot() {
   // const [chats, setChats] = useState([{ sent: false, message: "Hello there! 😊 I'm here to help you with any questions or needs you might have. What can I do for you today?" }])
   const [chats, setChats] = useState([{ sent: false, message: "હેલો, તમે કેમ છો" }])
-  
 
   const [input, setInput] = useState("")
   const [send, setSend] = useState("")
@@ -16,7 +16,17 @@ function ChatBot() {
   const [dates, setDates] = useState([])
   const [openChat,setOpenChat] = useState(false)
   const chatContainerRef = useRef(null)
+  const [session,setSession] = useState(null)
+  const sess = useSession()
 
+  const fetchSession = async () => {
+    const s1 = await getSession();
+    console.log(s1, "navbar");
+    setSession(s1)
+  };
+  useEffect(() => {
+    fetchSession();
+  }, [router,sess]);
 
 
   const scrollToBottom = () => {
@@ -43,7 +53,7 @@ function ChatBot() {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ input: send })
+      body: JSON.stringify({ input: send ,email: session?.user?.email})
     })
     const data = await res.json()
     console.log(data)

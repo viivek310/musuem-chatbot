@@ -5,13 +5,13 @@ import React, { useEffect, useState } from 'react'
 import NavLink from './NavLink'
 import Hamburger from 'hamburger-react'
 import { useRouter } from 'next/navigation'
-import { getSession, signOut } from 'next-auth/react'
-
+import { getSession, signOut, useSession } from 'next-auth/react'
 
 function Navbar() {
   const [isOpen, setOpen] = useState(false)
   const router = useRouter()
   const [session, setSession] = useState(null)
+  const sess = useSession()
 
   const fetchSession = async () => {
     const session = await getSession();
@@ -20,7 +20,7 @@ function Navbar() {
   };
   useEffect(() => {
     fetchSession();
-  }, [router]);
+  }, [router,sess]);
 
   return (
     <header className='sticky top-0 z-50'>
