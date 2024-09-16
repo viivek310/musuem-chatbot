@@ -125,6 +125,7 @@ function ChatBot() {
     console.log(data.query)
     setQuery(data.query)
     setShows(data.shows)
+    setTicketDetails(null)
     setChats(prev => setChats([...prev, { sent: false, message: data.response }]))
   }
 
